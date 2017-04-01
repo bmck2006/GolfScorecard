@@ -23,11 +23,11 @@ public class MainActivity extends ListActivity {
     private Hole[] holeArray = new Hole[18];
     private ListAdapter listAdapter;
 
-    private TextView scoreView;
-    private TextView totalStrokesView;
-    private int score = 0;
-    private int totalPar;
-    private int totalStrokes = 0;
+    public static TextView scoreView;
+    public static TextView totalStrokesView;
+    public static int score = 0;
+    public static int totalPar;
+    public static int totalStrokes = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +92,10 @@ public class MainActivity extends ListActivity {
             for(Hole hole: holeArray) {
                 hole.setStrokeCount(0);
             }
+            totalStrokes = 0;
+            score = totalStrokes - totalPar;
+            scoreView.setText(String.valueOf(score));
+            totalStrokesView.setText(String.valueOf(totalStrokes));
             listAdapter.notifyDataSetChanged();
 
             return true;
@@ -103,6 +107,10 @@ public class MainActivity extends ListActivity {
             for(Hole hole: holeArray) {
                 hole.setPar(0);
             }
+            totalPar = 0;
+            score = totalStrokes - totalPar;
+            scoreView.setText(String.valueOf(score));
+            totalStrokesView.setText(String.valueOf(totalStrokes));
             listAdapter.notifyDataSetChanged();
 
             return true;

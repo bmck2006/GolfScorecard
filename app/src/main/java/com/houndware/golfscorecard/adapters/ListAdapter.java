@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.houndware.golfscorecard.R;
 import com.houndware.golfscorecard.model.Hole;
+import com.houndware.golfscorecard.ui.MainActivity;
 
 
 public class ListAdapter extends BaseAdapter {
@@ -68,17 +69,28 @@ public class ListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 int updatedParCount = holes[position].getPar() - 1;
-                if (updatedParCount < 0) updatedParCount = 0;
+                if (updatedParCount < 0) {
+                    updatedParCount = 0;
+                }
+                else {
+                    MainActivity.totalPar -= 1;
+                    MainActivity.score = MainActivity.totalStrokes - MainActivity.totalPar;
+                }
                 holes[position].setPar(updatedParCount);
                 holder.parCount.setText(String.valueOf(updatedParCount));
+                MainActivity.scoreView.setText(String.valueOf(MainActivity.score));
             }
         });
         holder.addParButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int updatedParCount = holes[position].getPar() + 1;
+
+                MainActivity.totalPar += 1;
+                MainActivity.score = MainActivity.totalStrokes - MainActivity.totalPar;
                 holes[position].setPar(updatedParCount);
                 holder.parCount.setText(String.valueOf(updatedParCount));
+                MainActivity.scoreView.setText(String.valueOf(MainActivity.score));
             }
         });
 
@@ -86,17 +98,30 @@ public class ListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 int updatedStrokeCount = holes[position].getStrokeCount() - 1;
-                if (updatedStrokeCount < 0) updatedStrokeCount = 0;
+                if (updatedStrokeCount < 0) {
+                    updatedStrokeCount = 0;
+                }
+                else {
+                    MainActivity.totalStrokes -= 1;
+                    MainActivity.score = MainActivity.totalStrokes - MainActivity.totalPar;
+                }
                 holes[position].setStrokeCount(updatedStrokeCount);
                 holder.strokeCount.setText(String.valueOf(updatedStrokeCount));
+                MainActivity.totalStrokesView.setText(String.valueOf(MainActivity.totalStrokes));
+                MainActivity.scoreView.setText(String.valueOf(MainActivity.score));
             }
         });
         holder.addStrokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int updatedStrokeCount = holes[position].getStrokeCount() + 1;
+
+                MainActivity.totalStrokes += 1;
+                MainActivity.score = MainActivity.totalStrokes - MainActivity.totalPar;
                 holes[position].setStrokeCount(updatedStrokeCount);
                 holder.strokeCount.setText(String.valueOf(updatedStrokeCount));
+                MainActivity.totalStrokesView.setText(String.valueOf(MainActivity.totalStrokes));
+                MainActivity.scoreView.setText(String.valueOf(MainActivity.score));
             }
         });
 
