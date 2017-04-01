@@ -48,9 +48,9 @@ public class MainActivity extends ListActivity {
             holeArray[i] = new Hole("Hole " + (i + 1) + " :", strokes, par);
             totalStrokes += holeArray[i].getStrokeCount();
             totalPar += holeArray[i].getPar();
-            score = totalStrokes - totalPar;
-        }
 
+        }
+        score = totalStrokes - totalPar;
 
 
         listAdapter = new ListAdapter(this, holeArray);
