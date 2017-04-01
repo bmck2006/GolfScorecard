@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Golf Scorecard</string>
+    <string name="action_clear_strokes">Clear Strokes</string>
+    <string name="action_clear_pars">Clear Pars</string>
+</resources>
