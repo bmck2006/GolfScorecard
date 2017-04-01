@@ -2,6 +2,8 @@ package com.houndware.golfscorecard.model;
 
 public class Hole {
 
+    //Instance Variables:
+
     private String label;
     private int strokeCount;
     private int par;
